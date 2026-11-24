@@ -417,12 +417,20 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-open]'); i
 $('dClose').onclick=()=>dlg.close();
 dlg.addEventListener('click',e=>{if(e.target===dlg) dlg.close();});
 
-// ---- signup (no store connected yet) ----
-$('signup').addEventListener('submit',e=>{e.preventDefault();
-  const v=$('email').value.trim();
-  $('signupNote').textContent = /\S+@\S+\.\S+/.test(v)
-    ? "Email signups open when the store launches. For now, follow @wasabi.skate for drop dates."
-    : "Enter an email like name@example.com.";});
+// ---- signup: saves emails to the Wasabi Supabase project (insert-only, nobody can read them from the site) ----
+const SIGNUP_URL="https://xocjklvrgpfvjiycjkkv.supabase.co/rest/v1/email_signups";
+const SIGNUP_KEY="sb_publishable_ZVMpiKUrE-utZAAXof8gJA_wAzczdOG";
+$('signup').addEventListener('submit',async e=>{e.preventDefault();
+  const note=$('signupNote'), btn=e.target.querySelector('button'), v=$('email').value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){note.textContent="Enter an email like name@example.com.";return;}
+  btn.disabled=true; note.textContent="Signing you up...";
+  try{
+    const r=await fetch(SIGNUP_URL,{method:'POST',headers:{'apikey':SIGNUP_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({email:v})});
+    if(r.ok){note.textContent="You're on the list. We'll email you before the next drop."; $('email').value='';}
+    else if(r.status===409){note.textContent="You're already on the list.";}
+    else throw new Error(r.status);
+  }catch(err){note.textContent="That didn't go through. Try again, or DM @wasabi.skate.";}
+  btn.disabled=false;});
 </script>
 </body>
 </html>
