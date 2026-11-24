@@ -213,7 +213,7 @@ dialog::backdrop{background:rgba(10,10,8,.6)}
     </div>
   </section>
 
-  <div class="ticker" aria-hidden="true"><div>Wasabi means no lies &nbsp;•&nbsp; Drawn by Elijah &amp; Max &nbsp;•&nbsp; $80 a deck + shipping &nbsp;•&nbsp; Thorny Tiger out now &nbsp;•&nbsp; Wasabi OG + Starfish High on pre-order &nbsp;•&nbsp; Grip tape coming &nbsp;•&nbsp; More drops coming &nbsp;•&nbsp; Wasabi means no lies &nbsp;•&nbsp; Drawn by Elijah &amp; Max &nbsp;•&nbsp; $80 a deck + shipping &nbsp;•&nbsp; Thorny Tiger out now &nbsp;•&nbsp; Wasabi OG + Starfish High on pre-order &nbsp;•&nbsp; Grip tape coming &nbsp;•&nbsp; More drops coming &nbsp;•&nbsp;</div></div>
+  <div class="ticker" aria-hidden="true"><div>Wasabi means no lies &nbsp;•&nbsp; Drawn by Elijah &amp; Max &nbsp;•&nbsp; $70 a deck + shipping &nbsp;•&nbsp; Thorny Tiger out now &nbsp;•&nbsp; Wasabi OG + Starfish High on pre-order &nbsp;•&nbsp; Grip tape coming &nbsp;•&nbsp; More drops coming &nbsp;•&nbsp; Wasabi means no lies &nbsp;•&nbsp; Drawn by Elijah &amp; Max &nbsp;•&nbsp; $70 a deck + shipping &nbsp;•&nbsp; Thorny Tiger out now &nbsp;•&nbsp; Wasabi OG + Starfish High on pre-order &nbsp;•&nbsp; Grip tape coming &nbsp;•&nbsp; More drops coming &nbsp;•&nbsp;</div></div>
 
   <section id="decks">
     <div class="wrap">
@@ -250,7 +250,7 @@ dialog::backdrop{background:rgba(10,10,8,.6)}
         <p>Wasabi is a skate brand started by two brothers who never lie to each other. That's the whole foundation.</p>
         <p>We're building something we can pass down one day, from decks and clothes to skateparks. We give back along the way, and we tell you exactly how it's going.</p>
         <ul class="rules">
-          <li><b>01</b><span><strong>Open prices.</strong> Ask us where your $80 goes and we'll show you.</span></li>
+          <li><b>01</b><span><strong>Open prices.</strong> Ask us where your $70 goes and we'll show you.</span></li>
           <li><b>02</b><span><strong>Real people.</strong> DM the brand and the guys who drew the deck answer.</span></li>
           <li><b>03</b><span><strong>Straight updates.</strong> If a batch runs late, you hear it from us first.</span></li>
           <li><b>04</b><span><strong>Tithe.</strong> 10% of our profit goes to the church.</span></li>
@@ -365,7 +365,7 @@ D.forEach((d,i)=>{
   s.className='slide';
   s.setAttribute('aria-roledescription','slide'); s.setAttribute('aria-label',`${i+1} of ${D.length}: ${d.name}`);
   s.innerHTML=`<div><p class="kicker">${d.kicker}</p><h1>${esc(d.name)}</h1><p class="copy">${d.copy}</p>
-    <button class="btn solid" type="button" data-open="${i}">${sells(d)?buyWord(d)+' · $80':'See the deck'}</button></div>
+    <button class="btn solid" type="button" data-open="${i}">${sells(d)?buyWord(d)+' · $70':'See the deck'}</button></div>
     <div class="art persp"><div class="frame" data-tilt>${frameHTML(d)}</div></div>`;
   slides.appendChild(s);
   const b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label',`Show ${d.name}`); b.onclick=()=>{show(i);stop();}; dots.appendChild(b);
@@ -385,12 +385,12 @@ const grid=$('grid');
 D.forEach((d,i)=>{
   const it=document.createElement('div'); it.className='item';
   const c=document.createElement('button'); c.type='button'; c.className='card'; c.dataset.open=i;
-  c.setAttribute('aria-label',`${d.name}, ${sells(d)?pillWord(d).toLowerCase()+', 80 dollars':'coming soon'}. Open details`);
+  c.setAttribute('aria-label',`${d.name}, ${sells(d)?pillWord(d).toLowerCase()+', 70 dollars':'coming soon'}. Open details`);
   c.innerHTML=`<div class="persp"><div class="frame" data-tilt>${frameHTML(d)}</div></div>
-    <h3>${esc(d.name)}</h3>${sells(d)?'':'<div class="meta"><span class="price">$80</span><span class="pill">Soon</span></div>'}`;
+    <h3>${esc(d.name)}</h3>${sells(d)?'':'<div class="meta"><span class="price">$70</span><span class="pill">Soon</span></div>'}`;
   it.appendChild(c);
   if(sells(d)){const b=document.createElement('button'); b.type='button'; b.className='btn solid buy'; b.dataset.open=i;
-    b.textContent=`${buyWord(d)} · $80`; b.setAttribute('aria-label',`${buyWord(d)} ${d.name}, 80 dollars. Pick your size`); it.appendChild(b);}
+    b.textContent=`${buyWord(d)} · $70`; b.setAttribute('aria-label',`${buyWord(d)} ${d.name}, 70 dollars. Pick your size`); it.appendChild(b);}
   grid.appendChild(it);
 });
 document.querySelectorAll('[data-tilt]').forEach(wire);
@@ -403,13 +403,13 @@ SIZES.forEach(s=>{const id='sz'+s.replace('.','_');$('dSizes').insertAdjacentHTM
 $('dSizes').addEventListener('change',e=>{size=e.target.value;setBuy();});
 function setBuy(){const d=D[open]; if(!d) return; const b=$('dBuy');
   const link=shopLink(d);
-  if(sells(d)){b.textContent=`${buyWord(d)} ${size}" · $80`+(link?'':' (DM us)'); b.href=link||DM;}
+  if(sells(d)){b.textContent=`${buyWord(d)} ${size}" · $70`+(link?'':' (DM us)'); b.href=link||DM;}
   else {b.textContent='Get notified on Instagram'; b.href='https://www.instagram.com/wasabi.skate/';}
   b.target='_blank'; b.rel='noopener';
   b.setAttribute('aria-label',b.textContent);}
 function openDeck(i){open=+i; const d=D[open];
     const f=dlg.querySelector('.frame'); f.innerHTML=frameHTML(d); tilt(f,0,0); wire(f);
-  $('dName').textContent=d.name; $('dCopy').textContent=d.copy; $('dPrice').textContent='$80'; $('dEta').textContent=d.eta||''; $('dEta').hidden=!d.eta;
+  $('dName').textContent=d.name; $('dCopy').textContent=d.copy; $('dPrice').textContent='$70'; $('dEta').textContent=d.eta||''; $('dEta').hidden=!d.eta;
   $('dPill').textContent=sells(d)?pillWord(d):'Soon to be released'; $('dPill').className='pill '+(sells(d)?'go':'');
   $('dSizes').hidden=!sells(d);
   setBuy(); stop(); dlg.showModal();}
