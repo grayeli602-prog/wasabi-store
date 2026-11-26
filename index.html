@@ -157,6 +157,11 @@ dialog::backdrop{background:rgba(10,10,8,.6)}
 .sizes input:checked+label{background:var(--ink);color:var(--paper)}
 .sizes input:focus-visible+label{outline:3px solid var(--wasabi);outline-offset:2px}
 .dlg .info .pill{align-self:flex-start}
+.dlg .tags{display:flex;flex-wrap:wrap;gap:8px}
+.dlg .specs{margin:4px 0 0;border-top:2px solid var(--ink)}
+.dlg .specs div{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #d6d6cf;font-size:14px}
+.dlg .specs dt{font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:12px;align-self:center}
+.dlg .specs dd{margin:0;text-align:right}
 .dlg .eta{margin:0;padding:10px 12px;border-left:4px solid var(--wasabi);background:#eceee6;font-size:15px}
 .dlg .ship{font-size:14px;color:var(--muted);margin:0}
 .dlg .btn{justify-content:center}
@@ -294,7 +299,7 @@ dialog::backdrop{background:rgba(10,10,8,.6)}
   <div class="dlg" id="dWrap">
     <div class="art persp"><div class="frame" data-tilt></div></div>
     <div class="info">
-      <span class="pill" id="dPill"></span>
+      <div class="tags"><span class="pill" id="dPill"></span><span class="pill">Medium concave</span></div>
       <h2 id="dName"></h2>
       <p id="dCopy" style="margin:0"></p>
       <p class="price" id="dPrice" style="font-size:28px;margin:0"></p>
@@ -302,6 +307,14 @@ dialog::backdrop{background:rgba(10,10,8,.6)}
       <p class="ship">Plus shipping, calculated at checkout.</p>
       <fieldset class="sizes" id="dSizes"><legend>Pick a size</legend></fieldset>
       <a class="btn solid" id="dBuy" href="#" style="--fg:var(--ink);--bg:var(--paper)"></a>
+      <dl class="specs" aria-label="Deck specs">
+        <div><dt>Construction</dt><dd>7-ply Canadian maple</dd></div>
+        <div><dt>Shape</dt><dd>Classic popsicle</dd></div>
+        <div><dt>Concave</dt><dd>Medium</dd></div>
+        <div><dt>Widths</dt><dd>7.5" to 8.5" (9 sizes)</dd></div>
+        <div><dt>Made in</dt><dd>USA</dd></div>
+        <div><dt>Graphic</dt><dd>Original art by Elijah &amp; Max</dd></div>
+      </dl>
     </div>
   </div>
   <button class="close" type="button" id="dClose" aria-label="Close"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2L16 16M16 2L2 16" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></svg></button>
